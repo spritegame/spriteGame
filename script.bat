@@ -1,0 +1,1 @@
+xcopy .\resources\*.* .\proj.android\assets\  /s/r/y
