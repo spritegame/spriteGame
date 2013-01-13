@@ -8,6 +8,8 @@ LOCAL_MODULE_FILENAME := libgame
 
 LOCAL_SRC_FILES := spritegame/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+                   ../../Classes/GameLoading.cpp \
+                   ../../Classes/SceneManager.cpp \
                    ../../Classes/HelloWorldScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   

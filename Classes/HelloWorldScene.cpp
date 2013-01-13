@@ -35,6 +35,10 @@ bool HelloWorld::init()
 
         CC_BREAK_IF(! CCLayer::init());
 
+        CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+        CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+
+
         //////////////////////////////////////////////////////////////////////////
         // add your codes below...
         //////////////////////////////////////////////////////////////////////////
@@ -50,7 +54,10 @@ bool HelloWorld::init()
         CC_BREAK_IF(! pCloseItem);
 
         // Place the menu item bottom-right conner.
-        pCloseItem->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
+        pCloseItem->setPosition(
+        			ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
+        					origin.y + pCloseItem->getContentSize().height/2));
+//        pCloseItem->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
 
         // Create a menu with the "close" menu item, it's an auto release object.
         CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
