@@ -9,6 +9,7 @@ LOCAL_MODULE_FILENAME := libgame
 LOCAL_SRC_FILES := spritegame/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/SceneManager.cpp \
+                   ../../Classes/SoundManager.cpp \
                    ../../Classes/GameLoading.cpp \
                    ../../Classes/GameMenuScene.cpp \
                    ../../Classes/GameOverScene.cpp \

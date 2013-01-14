@@ -22,8 +22,16 @@ public:
 	CREATE_FUNC(GameLoading);
 
 private:
-	// scheduled Update
+
+	/*
+	 * 加载图片资源完成后的回调函数
+	 */
 	void loadingCallBack();
+	/*
+	 * 预加载游戏资源
+	 * 使用addImageAsync加载图片资源
+	 */
+	void preLoadResource(char const* resource);
 
 private:
 	int _resource_count;

@@ -16,8 +16,7 @@ public:
 
 	static cocos2d::CCScene* scene();
 
-	CREATE_FUNC(GameMenuScene)
-	;
+	CREATE_FUNC(GameMenuScene);
 
 };
 

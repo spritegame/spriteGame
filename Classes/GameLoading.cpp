@@ -7,10 +7,9 @@
 
 #include "GameLoading.h"
 #include "SceneManager.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
-
-#define TOTAL_RESOURCE 9
 
 GameLoading::GameLoading():_resource_count(0){
 }
@@ -47,61 +46,54 @@ bool GameLoading::init() {
 	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 
-	CCLog("loading_bg 1");
-	CCTextureCache::sharedTextureCache()->addImage("loading_bg.jpg");
-	CCLog("loading_bg 2");
+//	CCTextureCache::sharedTextureCache()->addImage("loading_bg.jpg");
 	CCSprite* loadingBg = CCSprite::create("loading_bg.jpg");
-	CCLog("loading_bg 3");
 	loadingBg->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 	addChild(loadingBg, 0);
-	CCLog("loading_bg 4");
 
-	CCTextureCache::sharedTextureCache()->addImageAsync("CloseNormal.png", this,
-			callfuncO_selector(GameLoading::loadingCallBack));
+	SoundManager::sharedSoundManager();
 
-	CCLog("loading_bg 5");
+	std::string res[] = {
+	        "CloseNormal.png",
+	        "CloseSelected.png",
+	        "HelloWorld.png",
+//	        "game_bg_1.jpg",
+//	        "game_bg_1_1.jpg",
+//	        "game_bg_2.jpg",
+//	        "game_bg_2_1.jpg"
+	 };
 
-	CCTextureCache::sharedTextureCache()->addImageAsync("CloseSelected.png",
-			this, callfuncO_selector(GameLoading::loadingCallBack));
-	CCLog("loading_bg 6");
+	 int res_len = sizeof(res) / sizeof(res[0]);
 
-//	CCTextureCache::sharedTextureCache()->addImageAsync("HelloWorld.png", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 7");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_1_1.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 8");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_1.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 9");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_2_1.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 10");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_2.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 11");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_3_1.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 12");
-//
-//	CCTextureCache::sharedTextureCache()->addImageAsync("game_bg_3.jpg", this,
-//			callfuncO_selector(GameLoading::loadingCallBack));
-//	CCLog("loading_bg 13");
+	 for(int i = 0; i != res_len; ++i){
+		 preLoadResource(res[i].c_str());
+	 }
 
+//	preLoadResource((char*)"CloseNormal.png");
+//	preLoadResource((char*)"CloseSelected.png");
+//	preLoadResource((char*)"HelloWorld.png");
+//	preLoadResource((char*)"game_bg_1.jpg");
+//	preLoadResource((char*)"game_bg_1_1.jpg");
+//	preLoadResource((char*)"game_bg_2.jpg");
+//	preLoadResource((char*)"game_bg_2_1.jpg");
 
 	return true;
 
 }
 
+void GameLoading::preLoadResource(char const* resource){
+	if(resource){
+		++_resource_count;
+		CCTextureCache::sharedTextureCache()->addImageAsync(resource, this, callfuncO_selector(GameLoading::loadingCallBack));
+		CCLog("add resource: %d",_resource_count);
+	}
+}
+
+
 void GameLoading::loadingCallBack() {
-	++_resource_count;
+	--_resource_count;
 	CCLog("loadingCallBack _resource_count:%d",_resource_count);
-	if(_resource_count >= TOTAL_RESOURCE){
+	if(_resource_count == 0){
 		CCLog("loading finish...");
 		SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_MENU);
 	}
