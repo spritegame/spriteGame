@@ -2,11 +2,14 @@
  * SceneManager.cpp
  *
  *  Created on: 2013-1-13
- *      Author: allin
+ *      Author: allin.dev
  */
 #include "cocos2d.h"
 #include "SceneManager.h"
 #include "GameLoading.h"
+#include "GameMenuScene.h"
+#include "GameOverScene.h"
+#include "GameHelpScene.h"
 #include "HelloWorldScene.h"
 
 USING_NS_CC;
@@ -71,7 +74,7 @@ void SceneManager::runScene(SceneId id) {
 		break;
 	case SCENE_MENU:
 //		SoundManager::sharedSoundManager()->StopMusic();
-		newScene = HelloWorld::scene();
+		newScene = GameMenuScene::scene();
 		break;
 
 	case SCENE_PLAY:
@@ -80,11 +83,11 @@ void SceneManager::runScene(SceneId id) {
 		break;
 
 	case SCENE_GAMEOVER:
-//		newScene = GameOver::scene();
+		newScene = GameOverScene::scene();
 		break;
 
 	case SCENE_HELP:
-//		newScene = GameOver::scene();
+		newScene = GameHelpScene::scene();
 		break;
 
 	}

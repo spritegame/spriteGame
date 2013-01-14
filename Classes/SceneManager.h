@@ -2,7 +2,7 @@
  * SceneManager.h
  *
  *  Created on: 2013-1-13
- *      Author: allin
+ *      Author: allin.dev
  */
 #ifndef SCENEMANAGER_H_
 #define SCENEMANAGER_H_

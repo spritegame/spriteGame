@@ -2,7 +2,7 @@
  * LoadingScene.h
  *
  *  Created on: 2013-1-13
- *      Author: allin
+ *      Author: allin.dev
  */
 
 #ifndef GAMELOADING_H_

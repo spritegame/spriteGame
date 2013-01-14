@@ -2,7 +2,7 @@
  * LoadingScene.cpp
  *
  *  Created on: 2013-1-13
- *      Author: allin
+ *      Author: allin.dev
  */
 
 #include "GameLoading.h"
