@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SoundManager.h"
+#include "SlidingMenu.h"
 
 USING_NS_CC;
 
@@ -107,6 +108,27 @@ bool HelloWorld::init() {
 		this->addChild(pSprite, 0);
 
 		SoundManager::sharedSoundManager()->playMusic();
+
+
+
+
+
+
+		CCArray* ccArray = CCArray::createWithCapacity(2);
+
+		CCMenuItemImage* pItem1 = CCMenuItemImage::create("menu1.jpg", "menu1.jpg");
+		CCMenuItemImage* pItem2 = CCMenuItemImage::create("menu2.jpg", "menu2.jpg");
+		CCMenuItemImage* pItem3 = CCMenuItemImage::create("menu3.jpg", "menu3.jpg");
+		CCMenuItemImage* pItem4 = CCMenuItemImage::create("menu4.jpg", "menu4.jpg");
+
+		ccArray->addObject(pItem1);
+		ccArray->addObject(pItem2);
+		ccArray->addObject(pItem3);
+		ccArray->addObject(pItem4);
+		SlidingMenuGrid* slidingMenuGrid = SlidingMenuGrid::create(ccArray, 1, 1, CCPointMake(size.width / 2,size.height / 2), CCPointMake(0,0));
+		slidingMenuGrid->setPosition(0,0);
+		this->addChild(slidingMenuGrid, 2);
+
 
 		bRet = true;
 	} while (0);

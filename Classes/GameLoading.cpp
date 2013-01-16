@@ -57,10 +57,10 @@ bool GameLoading::init() {
 	        "CloseNormal.png",
 	        "CloseSelected.png",
 	        "HelloWorld.png",
-//	        "game_bg_1.jpg",
-//	        "game_bg_1_1.jpg",
-//	        "game_bg_2.jpg",
-//	        "game_bg_2_1.jpg"
+	        "menu1.jpg",
+	        "menu2.jpg",
+	        "menu3.jpg",
+	        "menu4.jpg"
 	 };
 
 	 int res_len = sizeof(res) / sizeof(res[0]);

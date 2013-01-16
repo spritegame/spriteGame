@@ -232,15 +232,11 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest"
 			>
 			<File
-				RelativePath="..\Resources\CloseNormal.png"
+				RelativePath="..\proj.android\assets\background.mp3"
 				>
 			</File>
 			<File
-				RelativePath="..\Resources\CloseSelected.png"
-				>
-			</File>
-			<File
-				RelativePath="..\Resources\HelloWorld.png"
+				RelativePath="..\proj.android\assets\effect2.ogg"
 				>
 			</File>
 			<File
@@ -251,6 +247,34 @@
 				RelativePath=".\SpriteGame.rc"
 				>
 			</File>
+			<Filter
+				Name="ipad"
+				>
+				<File
+					RelativePath="..\proj.android\assets\ipad\CloseNormal.png"
+					>
+				</File>
+				<File
+					RelativePath="..\proj.android\assets\ipad\CloseSelected.png"
+					>
+				</File>
+				<File
+					RelativePath="..\proj.android\assets\ipad\HelloWorld.png"
+					>
+				</File>
+				<File
+					RelativePath="..\proj.android\assets\ipad\loading_bg.jpg"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="ipadhd"
+				>
+			</Filter>
+			<Filter
+				Name="iphone"
+				>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
