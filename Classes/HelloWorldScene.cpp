@@ -158,9 +158,13 @@ void HelloWorld::menuSoundSwitchCallback(CCObject* pSender) {
 	SoundManager::sharedSoundManager()->setMusic(!SoundManager::sharedSoundManager()->isMusicPlaying());
 }
 void HelloWorld::menuGameOverCallback(CCObject* pSender) {
-
 	GameOverScene* pGameOverScene = GameOverScene::create();
 	this->addChild(pGameOverScene, 3);
 
+	pGameOverScene->setOnCancel(this, callfuncO_selector(HelloWorld::gameOverCancelCallback));
+}
+
+void HelloWorld::gameOverCancelCallback(CCObject* pSender) {
+	CCLog("gameOverCancelCallback................");
 }
 

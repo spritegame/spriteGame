@@ -1,38 +1,37 @@
 /*
- * GameOverScene.cpp
+ * GamePauseScene.cpp
  *
  *  Created on: 2013-1-14
  *      Author: allin.dev
  */
 
-#include "GameOverScene.h"
-#include "SceneManager.h"
+#include "GamePauseScene.h"
 
 USING_NS_CC;
 
-GameOverScene::GameOverScene() {
+GamePauseScene::GamePauseScene() {
 }
-GameOverScene::~GameOverScene() {
+GamePauseScene::~GamePauseScene() {
 }
 
-bool GameOverScene::init() {
+bool GamePauseScene::init() {
 
 	if (!GameBaseDialog::init()) {
 		return false;
 	}
 	CCMenuItemImage* btnOk = CCMenuItemImage::create("btnOk.png", "btnOk.png",
-			this, menu_selector(GameOverScene::menuOkCallback));
+			this, menu_selector(GamePauseScene::menuOkCallback));
 	CCMenuItemImage* btnCancel = CCMenuItemImage::create("btnCancel.png",
 			"btnCancel.png", this,
-			menu_selector(GameOverScene::menuCancelCallback));
+			menu_selector(GamePauseScene::menuCancelCallback));
 
 	addMenuItem(btnOk, btnCancel);
 	return true;
 
 }
 
-void GameOverScene::drawView() {
-	CCLog("GameOverScene::drawView...");
+void GamePauseScene::drawView() {
+	CCLog("GamePauseScene::drawView...");
 	if (!m_pDialogBg) {
 		return;
 	}
@@ -44,19 +43,21 @@ void GameOverScene::drawView() {
 
 }
 
-void GameOverScene::back() {
+void GamePauseScene::back() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_MENU);
 }
 
 
-void GameOverScene::playAgain() {
+void GamePauseScene::playAgain() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
 }
 
-void GameOverScene::menuOkCallback(CCObject* pSender) {
+void GamePauseScene::menuOkCallback(CCObject* pSender) {
 
 }
-void GameOverScene::menuCancelCallback(CCObject* pSender) {
+void GamePauseScene::menuCancelCallback(CCObject* pSender) {
 	cancel();
 }
+
+
 

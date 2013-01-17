@@ -1,19 +1,19 @@
 /*
- * GameOverScene.h
+ * GamePauseScene.h
  *
  *  Created on: 2013-1-14
  *      Author: allin.dev
  */
 
-#ifndef GAMEOVERSCENE_H_
-#define GAMEOVERSCENE_H_
+#ifndef GAMEPAUSESCENE_H_
+#define GAMEPAUSESCENE_H_
 
 #include "GameBaseDialog.h"
 
-class GameOverScene: public GameBaseDialog {
+class GamePauseScene: public GameBaseDialog {
 public:
-	GameOverScene();
-	~GameOverScene();
+	GamePauseScene();
+	~GamePauseScene();
 
 	virtual bool init();
 	virtual void drawView();
@@ -23,9 +23,8 @@ public:
 	void back();
 	void playAgain();
 
-
-	CREATE_FUNC(GameOverScene);
+	CREATE_FUNC(GamePauseScene);
 
 };
 
-#endif /* GAMEOVERSCENE_H_ */
+#endif /* GAMEPAUSESCENE_H_ */

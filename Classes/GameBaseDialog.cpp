@@ -2,7 +2,7 @@
  * GameBaseDialog.cpp
  *
  *  Created on: 2013-1-16
- *      Author: Administrator
+ *      Author: allin.dev
  */
 
 #include "GameBaseDialog.h"
@@ -16,8 +16,7 @@ GameBaseDialog::~GameBaseDialog() {
 }
 
 bool GameBaseDialog::init() {
-
-	if (!CCLayer::init()) {
+	if (!CCLayerColor::initWithColor(ccc4(0,0,0,160))) {
 		return false;
 	}
 
@@ -27,14 +26,14 @@ bool GameBaseDialog::init() {
 	m_pDialogBg->setPosition(ccp(size.width / 2, size.height / 2));
 	this->addChild(m_pDialogBg, 0);
 
-//	draw();
+	this->drawView();
 
 	return true;
 }
 
-//void GameBaseDialog::draw() {
-//
-//}
+void GameBaseDialog::drawView() {
+	CCLog("GameBaseDialog::drawView...");
+}
 
 void GameBaseDialog::onEnter() {
 	CCLayer::onEnter();
@@ -50,7 +49,20 @@ void GameBaseDialog::onExit() {
 void GameBaseDialog::cancel() {
 	onExit();
 	this->removeFromParentAndCleanup(true);
+
+	if (m_pCancelCallbackTarget && m_selector) {
+		(m_pCancelCallbackTarget->*m_selector)(NULL);
+	}
 }
+
+
+void GameBaseDialog::setOnCancel(CCObject* target, SEL_CallFuncO selector) {
+	m_pCancelCallbackTarget = target;
+	m_selector = selector;
+
+}
+
+
 void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem) {
 
 	menuItem->setPosition(ccp(m_pDialogBg->getPositionX(), m_pDialogBg->getPositionY()));
@@ -81,7 +93,9 @@ bool GameBaseDialog::ccTouchBegan(CCTouch* pTouch, CCEvent* pEvent) {
 
 	if (m_pTouch == NULL) {
 		m_pTouch = pTouch;
-		m_bTouchMenu = m_pMenu->ccTouchBegan(pTouch, pEvent);
+		if(m_pMenu){
+			m_bTouchMenu = m_pMenu->ccTouchBegan(pTouch, pEvent);
+		}
 	}
 
 	return true;
@@ -89,7 +103,7 @@ bool GameBaseDialog::ccTouchBegan(CCTouch* pTouch, CCEvent* pEvent) {
 
 void GameBaseDialog::ccTouchMoved(CCTouch* pTouch, CCEvent* pEvent) {
 	if (m_pTouch == pTouch) {
-		if (m_bTouchMenu) {
+		if (m_bTouchMenu && m_pMenu) {
 			m_pMenu->ccTouchMoved(pTouch, pEvent);
 		}
 	}
@@ -97,7 +111,7 @@ void GameBaseDialog::ccTouchMoved(CCTouch* pTouch, CCEvent* pEvent) {
 
 void GameBaseDialog::ccTouchEnded(CCTouch* pTouch, CCEvent* pEvent) {
 	if (m_pTouch == pTouch) {
-		if (m_bTouchMenu) {
+		if (m_bTouchMenu && m_pMenu) {
 			m_pMenu->ccTouchEnded(pTouch, pEvent);
 			m_bTouchMenu = false;
 		}
@@ -106,7 +120,7 @@ void GameBaseDialog::ccTouchEnded(CCTouch* pTouch, CCEvent* pEvent) {
 }
 void GameBaseDialog::ccTouchCancelled(CCTouch* pTouch, CCEvent* pEvent) {
 	if (m_pTouch == pTouch) {
-		if (m_bTouchMenu) {
+		if (m_bTouchMenu && m_pMenu) {
 			m_pMenu->ccTouchEnded(pTouch, pEvent);
 			m_bTouchMenu = false;
 		}

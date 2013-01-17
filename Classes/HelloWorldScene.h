@@ -21,6 +21,7 @@ public:
 
 
     void menuGameOverCallback(CCObject* pSender);
+    void gameOverCancelCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);

@@ -12,7 +12,7 @@
 
 USING_NS_CC;
 
-class GameBaseDialog: public CCLayer {
+class GameBaseDialog: public CCLayerColor {
 public:
 	GameBaseDialog();
 	~GameBaseDialog();
@@ -27,18 +27,23 @@ public:
 
 	void addMenuItem(CCMenuItemImage*);
 	void addMenuItem(CCMenuItemImage*, CCMenuItemImage*);
+
 	void cancel();
+	void setOnCancel(CCObject* target, SEL_CallFuncO selector);
 
 	CREATE_FUNC(GameBaseDialog);
 
-//	virtual void draw();
+	virtual void drawView();
+
+protected:
+	CCSprite* m_pDialogBg;
+	CCMenu* m_pMenu;
 
 private:
-	CCMenu* m_pMenu;
 	bool m_bTouchMenu;
 	CCTouch* m_pTouch;
-
-	CCSprite* m_pDialogBg;
+	SEL_CallFuncO m_selector;
+	CCObject* m_pCancelCallbackTarget;
 };
 
 #endif /* GAMEBASEDIALOG_H_ */
