@@ -1,19 +1,19 @@
 /*
- * GameOverScene.h
+ * GamePassScene.h
  *
  *  Created on: 2013-1-14
  *      Author: allin.dev
  */
 
-#ifndef GAMEOVERSCENE_H_
-#define GAMEOVERSCENE_H_
+#ifndef GamePassScene_H_
+#define GamePassScene_H_
 
 #include "GameBaseDialog.h"
 
-class GameOverScene: public GameBaseDialog {
+class GamePassScene: public GameBaseDialog {
 public:
-	GameOverScene();
-	~GameOverScene();
+	GamePassScene();
+	~GamePassScene();
 
 	virtual bool init();
 	virtual void drawView();
@@ -28,10 +28,13 @@ public:
 	 * 重新开始
 	 */
 	void playAgain();
+	/**
+	 * 下一关卡
+	 */
+	void playNext();
 
-
-	CREATE_FUNC(GameOverScene);
+	CREATE_FUNC(GamePassScene);
 
 };
 
-#endif /* GAMEOVERSCENE_H_ */
+#endif /* GamePassScene_H_ */

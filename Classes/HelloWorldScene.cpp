@@ -159,8 +159,7 @@ void HelloWorld::menuSoundSwitchCallback(CCObject* pSender) {
 }
 void HelloWorld::menuGameOverCallback(CCObject* pSender) {
 	GameOverScene* pGameOverScene = GameOverScene::create();
-	this->addChild(pGameOverScene, 3);
-
+	pGameOverScene->show(this);
 	pGameOverScene->setOnCancel(this, callfuncO_selector(HelloWorld::gameOverCancelCallback));
 }
 

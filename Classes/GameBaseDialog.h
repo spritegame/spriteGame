@@ -28,6 +28,7 @@ public:
 	void addMenuItem(CCMenuItemImage*);
 	void addMenuItem(CCMenuItemImage*, CCMenuItemImage*);
 
+	void show(CCLayer* pParentLayer);
 	void cancel();
 	void setOnCancel(CCObject* target, SEL_CallFuncO selector);
 

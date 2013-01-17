@@ -1,37 +1,37 @@
 /*
- * GamePauseScene.cpp
+ * GamePassScene.cpp
  *
  *  Created on: 2013-1-14
  *      Author: allin.dev
  */
 
-#include "GamePauseScene.h"
+#include "GamePassScene.h"
 
 USING_NS_CC;
 
-GamePauseScene::GamePauseScene() {
+GamePassScene::GamePassScene() {
 }
-GamePauseScene::~GamePauseScene() {
+GamePassScene::~GamePassScene() {
 }
 
-bool GamePauseScene::init() {
+bool GamePassScene::init() {
 
 	if (!GameBaseDialog::init()) {
 		return false;
 	}
 	CCMenuItemImage* btnOk = CCMenuItemImage::create("btnOk.png", "btnOk.png",
-			this, menu_selector(GamePauseScene::menuOkCallback));
+			this, menu_selector(GamePassScene::menuOkCallback));
 	CCMenuItemImage* btnCancel = CCMenuItemImage::create("btnCancel.png",
 			"btnCancel.png", this,
-			menu_selector(GamePauseScene::menuCancelCallback));
+			menu_selector(GamePassScene::menuCancelCallback));
 
 	addMenuItem(btnOk, btnCancel);
 	return true;
 
 }
 
-void GamePauseScene::drawView() {
-	CCLog("GamePauseScene::drawView...");
+void GamePassScene::drawView() {
+	CCLog("GamePassScene::drawView...");
 	if (!m_pDialogBg) {
 		return;
 	}
@@ -43,22 +43,22 @@ void GamePauseScene::drawView() {
 
 }
 
-void GamePauseScene::back() {
+void GamePassScene::back() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_MENU);
 }
 
 
-void GamePauseScene::playAgain() {
+void GamePassScene::playAgain() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
 }
-void GamePauseScene::playContinue() {
-	cancel();
+void GamePassScene::playNext() {
+	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
 }
 
-void GamePauseScene::menuOkCallback(CCObject* pSender) {
+void GamePassScene::menuOkCallback(CCObject* pSender) {
 
 }
-void GamePauseScene::menuCancelCallback(CCObject* pSender) {
+void GamePassScene::menuCancelCallback(CCObject* pSender) {
 	cancel();
 }
 

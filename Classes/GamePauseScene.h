@@ -20,8 +20,18 @@ public:
 	void menuOkCallback(CCObject* pSender);
 	void menuCancelCallback(CCObject* pSender);
 
+	/*
+	 * 返回
+	 */
 	void back();
+	/**
+	 * 重新开始
+	 */
 	void playAgain();
+	/**
+	 * 继续游戏
+	 */
+	void playContinue();
 
 	CREATE_FUNC(GamePauseScene);
 

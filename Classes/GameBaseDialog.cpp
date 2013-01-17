@@ -31,6 +31,21 @@ bool GameBaseDialog::init() {
 	return true;
 }
 
+void GameBaseDialog::show(CCLayer* pParentLayer) {
+
+	pParentLayer->addChild(this, 999);
+}
+
+void GameBaseDialog::cancel() {
+	onExit();
+	this->removeFromParentAndCleanup(true);
+
+	if (m_pCancelCallbackTarget && m_selector) {
+		(m_pCancelCallbackTarget->*m_selector)(NULL);
+	}
+}
+
+
 void GameBaseDialog::drawView() {
 	CCLog("GameBaseDialog::drawView...");
 }
@@ -46,14 +61,7 @@ void GameBaseDialog::onExit() {
 	CCLayer::onExit();
 }
 
-void GameBaseDialog::cancel() {
-	onExit();
-	this->removeFromParentAndCleanup(true);
 
-	if (m_pCancelCallbackTarget && m_selector) {
-		(m_pCancelCallbackTarget->*m_selector)(NULL);
-	}
-}
 
 
 void GameBaseDialog::setOnCancel(CCObject* target, SEL_CallFuncO selector) {
