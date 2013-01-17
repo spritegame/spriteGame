@@ -12,8 +12,10 @@
 
 USING_NS_CC;
 
-class GameBaseDialog : public CCLayer{
+class GameBaseDialog: public CCLayer {
 public:
+	GameBaseDialog();
+	~GameBaseDialog();
 	virtual bool init();
 	virtual bool ccTouchBegan(CCTouch* pTouch, CCEvent* pEvent);
 	virtual void ccTouchMoved(CCTouch* pTouch, CCEvent* pEvent);
@@ -23,14 +25,20 @@ public:
 	void onEnter();
 	void onExit();
 
+	void addMenuItem(CCMenuItemImage*);
+	void addMenuItem(CCMenuItemImage*, CCMenuItemImage*);
 	void cancel();
 
 	CREATE_FUNC(GameBaseDialog);
 
-protected:
-	virtual void draw();
+//	virtual void draw();
 
+private:
+	CCMenu* m_pMenu;
+	bool m_bTouchMenu;
+	CCTouch* m_pTouch;
+
+	CCSprite* m_pDialogBg;
 };
-
 
 #endif /* GAMEBASEDIALOG_H_ */

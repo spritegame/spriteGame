@@ -31,15 +31,15 @@ protected:
 	bool init();
 
 private:
-	static SoundManager* _sharedSoundManager;
+	static SoundManager* m_pSharedSoundManager;
 	/*
 	 * 是否打开背景音乐
 	 */
-	bool _isMusic;
+	bool m_bIsMusic;
 	/*
 	 * 是否打开音效
 	 */
-	bool _isSoundEffect;
+	bool m_bIsSoundEffect;
 
 };
 

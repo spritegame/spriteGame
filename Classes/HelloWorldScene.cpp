@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SoundManager.h"
 #include "SlidingMenu.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
@@ -74,10 +75,20 @@ bool HelloWorld::init() {
 
 
 
+		CCMenuItemImage *pGameOverItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+				menu_selector(HelloWorld::menuGameOverCallback));
+		CC_BREAK_IF(! pGameOverItem);
+
+		// Place the menu item bottom-right conner.
+		pGameOverItem->setPosition(ccp(origin.x + pGameOverItem->getContentSize().width/2 +200,
+				origin.y + pGameOverItem->getContentSize().height + 100+ pGameOverItem->getContentSize().height/2));
+
+
+
 
 
 		// Create a menu with the "close" menu item, it's an auto release object.
-		CCMenu* pMenu = CCMenu::create(pCloseItem, pSoundItem, pSoundSwitchItem, NULL);
+		CCMenu* pMenu = CCMenu::create(pCloseItem, pSoundItem, pSoundSwitchItem,pGameOverItem, NULL);
 		pMenu->setPosition(CCPointZero);
 		CC_BREAK_IF(! pMenu);
 
@@ -113,7 +124,6 @@ bool HelloWorld::init() {
 
 
 
-
 		CCArray* ccArray = CCArray::createWithCapacity(2);
 
 		CCMenuItemImage* pItem1 = CCMenuItemImage::create("menu1.jpg", "menu1.jpg");
@@ -128,6 +138,7 @@ bool HelloWorld::init() {
 		SlidingMenuGrid* slidingMenuGrid = SlidingMenuGrid::create(ccArray, 1, 1, CCPointMake(size.width / 2,size.height / 2), CCPointMake(0,0));
 		slidingMenuGrid->setPosition(0,0);
 		this->addChild(slidingMenuGrid, 2);
+
 
 
 		bRet = true;
@@ -145,5 +156,11 @@ void HelloWorld::menuSoundCallback(CCObject* pSender) {
 }
 void HelloWorld::menuSoundSwitchCallback(CCObject* pSender) {
 	SoundManager::sharedSoundManager()->setMusic(!SoundManager::sharedSoundManager()->isMusicPlaying());
+}
+void HelloWorld::menuGameOverCallback(CCObject* pSender) {
+
+	GameOverScene* pGameOverScene = GameOverScene::create();
+	this->addChild(pGameOverScene, 3);
+
 }
 

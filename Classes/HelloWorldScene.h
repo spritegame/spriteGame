@@ -19,6 +19,9 @@ public:
     void menuSoundCallback(CCObject* pSender);
     void menuSoundSwitchCallback(CCObject* pSender);
 
+
+    void menuGameOverCallback(CCObject* pSender);
+
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 };

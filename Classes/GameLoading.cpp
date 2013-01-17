@@ -11,7 +11,7 @@
 
 USING_NS_CC;
 
-GameLoading::GameLoading():_resource_count(0){
+GameLoading::GameLoading():m_iResource_count(0){
 }
 
 GameLoading::~GameLoading(){
@@ -57,10 +57,16 @@ bool GameLoading::init() {
 	        "CloseNormal.png",
 	        "CloseSelected.png",
 	        "HelloWorld.png",
-	        "menu1.jpg",
+/*	       
+			"menu1.jpg",
 	        "menu2.jpg",
 	        "menu3.jpg",
-	        "menu4.jpg"
+	        "menu4.jpg",
+
+			"popDialogBg.png",
+	        "btnOk.png",
+	        "btnCancel.png",
+			*/
 	 };
 
 	 int res_len = sizeof(res) / sizeof(res[0]);
@@ -69,13 +75,6 @@ bool GameLoading::init() {
 		 preLoadResource(res[i].c_str());
 	 }
 
-//	preLoadResource((char*)"CloseNormal.png");
-//	preLoadResource((char*)"CloseSelected.png");
-//	preLoadResource((char*)"HelloWorld.png");
-//	preLoadResource((char*)"game_bg_1.jpg");
-//	preLoadResource((char*)"game_bg_1_1.jpg");
-//	preLoadResource((char*)"game_bg_2.jpg");
-//	preLoadResource((char*)"game_bg_2_1.jpg");
 
 	return true;
 
@@ -83,17 +82,17 @@ bool GameLoading::init() {
 
 void GameLoading::preLoadResource(char const* resource){
 	if(resource){
-		++_resource_count;
+		++m_iResource_count;
 		CCTextureCache::sharedTextureCache()->addImageAsync(resource, this, callfuncO_selector(GameLoading::loadingCallBack));
-		CCLog("add resource: %d",_resource_count);
+		CCLog("add resource: %d",m_iResource_count);
 	}
 }
 
 
-void GameLoading::loadingCallBack() {
-	--_resource_count;
-	CCLog("loadingCallBack _resource_count:%d",_resource_count);
-	if(_resource_count == 0){
+void GameLoading::loadingCallBack(CCObject* obj) {
+	--m_iResource_count;
+	CCLog("loadingCallBack _resource_count:%d",m_iResource_count);
+	if(m_iResource_count == 0){
 		CCLog("loading finish...");
 		SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_MENU);
 	}

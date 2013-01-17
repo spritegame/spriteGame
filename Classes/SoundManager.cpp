@@ -21,34 +21,34 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-SoundManager *SoundManager::_sharedSoundManager = NULL;
+SoundManager *SoundManager::m_pSharedSoundManager = NULL;
 
 SoundManager::SoundManager() :
-		_isMusic(true), _isSoundEffect(true) {
+		m_bIsMusic(true), m_bIsSoundEffect(true) {
 
-	_isMusic = CCUserDefault::sharedUserDefault()->getBoolForKey("isMusic",true);
-	_isSoundEffect = CCUserDefault::sharedUserDefault()->getBoolForKey("isSoundEffect",true);
+	m_bIsMusic = CCUserDefault::sharedUserDefault()->getBoolForKey("isMusic",true);
+	m_bIsSoundEffect = CCUserDefault::sharedUserDefault()->getBoolForKey("isSoundEffect",true);
 }
 
 SoundManager::~SoundManager() {
 }
 
 SoundManager *SoundManager::sharedSoundManager() {
-	if (_sharedSoundManager == NULL) {
+	if (m_pSharedSoundManager == NULL) {
 		CCLog("create SoundManager...");
-		_sharedSoundManager = new SoundManager();
-		if (!_sharedSoundManager || !_sharedSoundManager->init()) {
-			CC_SAFE_DELETE(_sharedSoundManager);
+		m_pSharedSoundManager = new SoundManager();
+		if (!m_pSharedSoundManager || !m_pSharedSoundManager->init()) {
+			CC_SAFE_DELETE(m_pSharedSoundManager);
 		}
 
 	}
 
-	return _sharedSoundManager;
+	return m_pSharedSoundManager;
 
 }
 
 void SoundManager::purgeSharedSoundManager() {
-	CC_SAFE_DELETE(_sharedSoundManager);
+	CC_SAFE_DELETE(m_pSharedSoundManager);
 
 }
 
@@ -79,7 +79,7 @@ void SoundManager::playMusic() {
 }
 
 void SoundManager::playMusic(bool loop) {
-	if (_isMusic) {
+	if (m_bIsMusic) {
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 				std::string(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(MUSIC_FILE)).c_str(), loop);
 	}
@@ -90,18 +90,18 @@ void SoundManager::stopMusic() {
 }
 
 void SoundManager::pauseMusic() {
-	if (_isMusic) {
+	if (m_bIsMusic) {
 		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 	}
 }
 void SoundManager::resumeMusic() {
-	if (_isMusic) {
+	if (m_bIsMusic) {
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	}
 }
 void SoundManager::rewindMusic() {
 	// rewind background music
-	if (_isMusic) {
+	if (m_bIsMusic) {
 		SimpleAudioEngine::sharedEngine()->rewindBackgroundMusic();
 	}
 }
@@ -110,7 +110,7 @@ int SoundManager::playEffect() {
 	return playEffect(false);
 }
 int SoundManager::playEffect(bool loop) {
-	if (_isSoundEffect) {
+	if (m_bIsSoundEffect) {
 		return SimpleAudioEngine::sharedEngine()->playEffect(
 				std::string(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(EFFECT_FILE)).c_str(), loop);
 	}
@@ -126,27 +126,27 @@ void SoundManager::stopAllEffects() {
 }
 
 void SoundManager::setMusic(bool isMusic) {
-	_isMusic = isMusic;
+	m_bIsMusic = isMusic;
 
-	CCUserDefault::sharedUserDefault()->setBoolForKey("isMusic",_isMusic);
-	if (!_isMusic) {
+	CCUserDefault::sharedUserDefault()->setBoolForKey("isMusic",m_bIsMusic);
+	if (!m_bIsMusic) {
 		stopMusic();
 	} else {
 		playMusic();
 	}
 }
 void SoundManager::setSoundEffect(bool isSoundEffect) {
-	_isSoundEffect = isSoundEffect;
+	m_bIsSoundEffect = isSoundEffect;
 
-	CCUserDefault::sharedUserDefault()->setBoolForKey("isSoundEffect",_isSoundEffect);
+	CCUserDefault::sharedUserDefault()->setBoolForKey("isSoundEffect",m_bIsSoundEffect);
 
 }
 
 bool SoundManager::isMusicPlaying() {
-	return _isMusic;
+	return m_bIsMusic;
 
 }
 bool SoundManager::isSoundEffectPlaying() {
-	return _isSoundEffect;
+	return m_bIsSoundEffect;
 }
 

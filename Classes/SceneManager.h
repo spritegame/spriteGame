@@ -32,7 +32,7 @@ protected:
 	~SceneManager();
 
 private:
-	static SceneManager* _sharedGameManager;
+	static SceneManager* m_pSharedGameManager;
 
 
 };

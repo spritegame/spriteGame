@@ -8,13 +8,21 @@
 #ifndef GAMEOVERSCENE_H_
 #define GAMEOVERSCENE_H_
 
-#include "cocos2d.h"
+#include "GameBaseDialog.h"
 
-class GameOverScene: public cocos2d::CCLayer {
+class GameOverScene: public GameBaseDialog {
 public:
+	GameOverScene();
+	~GameOverScene();
+
 	virtual bool init();
 
-	static cocos2d::CCScene* scene();
+	//static cocos2d::CCScene* scene();
+
+//	virtual void draw();
+
+	 void menuOkCallback(CCObject* pSender);
+	 void menuCancelCallback(CCObject* pSender);
 
 	CREATE_FUNC(GameOverScene);
 

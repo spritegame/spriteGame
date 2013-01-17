@@ -26,7 +26,7 @@ private:
 	/*
 	 * 加载图片资源完成后的回调函数
 	 */
-	void loadingCallBack();
+	void loadingCallBack(cocos2d::CCObject* obj);
 	/*
 	 * 预加载游戏资源
 	 * 使用addImageAsync加载图片资源
@@ -34,7 +34,7 @@ private:
 	void preLoadResource(char const* resource);
 
 private:
-	int _resource_count;
+	int m_iResource_count;
 };
 
 

@@ -14,7 +14,7 @@
 
 USING_NS_CC;
 
-SceneManager* SceneManager::_sharedGameManager = NULL;
+SceneManager* SceneManager::m_pSharedGameManager = NULL;
 
 SceneManager::SceneManager() {
 }
@@ -23,19 +23,19 @@ SceneManager::~SceneManager() {
 }
 
 SceneManager* SceneManager::sharedGameManager() {
-	if (_sharedGameManager == NULL) {
-		_sharedGameManager = new SceneManager();
-		if (!_sharedGameManager || !_sharedGameManager->init()) {
-			CC_SAFE_DELETE(_sharedGameManager);
+	if (m_pSharedGameManager == NULL) {
+		m_pSharedGameManager = new SceneManager();
+		if (!m_pSharedGameManager || !m_pSharedGameManager->init()) {
+			CC_SAFE_DELETE(m_pSharedGameManager);
 		}
 	}
 
-	return _sharedGameManager;
+	return m_pSharedGameManager;
 
 }
 
 void SceneManager::purgeSharedGameManager() {
-	CC_SAFE_DELETE(_sharedGameManager);
+	CC_SAFE_DELETE(m_pSharedGameManager);
 }
 
 bool SceneManager::init() {
@@ -84,7 +84,7 @@ void SceneManager::runScene(SceneId id) {
 		break;
 
 	case SCENE_GAMEOVER:
-		newScene = GameOverScene::scene();
+		//newScene = GameOverScene::scene();
 		break;
 
 	case SCENE_HELP:

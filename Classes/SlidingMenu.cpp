@@ -106,7 +106,7 @@ void SlidingMenuGrid::buildGrid(int cols, int rows)
 		}
 		
 	}
-	if(child->count() > rows*cols*iPageCount)//   <-- add code for FIX (Mr.  K pop)
+	if(child->count() > rows*cols*iPageCount) //   <-- add code for FIX (Mr.  K pop)
 	{
 		iPageCount++;
 	}	
