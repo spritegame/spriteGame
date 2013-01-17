@@ -20,13 +20,13 @@ bool GameOverScene::init() {
 	if (!GameBaseDialog::init()) {
 		return false;
 	}
-	CCMenuItemImage* btnOk = CCMenuItemImage::create("btnOk.png", "btnOk.png",
-			this, menu_selector(GameOverScene::menuOkCallback));
-	CCMenuItemImage* btnCancel = CCMenuItemImage::create("btnCancel.png",
-			"btnCancel.png", this,
-			menu_selector(GameOverScene::menuCancelCallback));
+	CCMenuItemImage* btnBack = CCMenuItemImage::create("btnBack.png", "btnBack.png",
+			this, menu_selector(GameOverScene::buttonBackCallback));
 
-	addMenuItem(btnOk, btnCancel);
+	CCMenuItemImage* btnPlayAgain = CCMenuItemImage::create("btnResume.png", "btnResume.png",
+			this, menu_selector(GameOverScene::buttonPlayAgainCallback));
+
+	addMenuItem(btnBack, btnPlayAgain);
 	return true;
 
 }
@@ -53,10 +53,12 @@ void GameOverScene::playAgain() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
 }
 
-void GameOverScene::menuOkCallback(CCObject* pSender) {
 
+
+void GameOverScene::buttonBackCallback(CCObject* pSender) {
+	playAgain();
 }
-void GameOverScene::menuCancelCallback(CCObject* pSender) {
-	cancel();
+void GameOverScene::buttonPlayAgainCallback(CCObject* pSender) {
+	back();
 }
 

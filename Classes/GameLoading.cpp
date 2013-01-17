@@ -57,7 +57,7 @@ bool GameLoading::init() {
 	        "CloseNormal.png",
 	        "CloseSelected.png",
 	        "HelloWorld.png",
-/*	       
+
 			"menu1.jpg",
 	        "menu2.jpg",
 	        "menu3.jpg",
@@ -66,7 +66,9 @@ bool GameLoading::init() {
 			"popDialogBg.png",
 	        "btnOk.png",
 	        "btnCancel.png",
-			*/
+	        "btnBack.png",
+	        "btnNext.png",
+	        "btnResume.png",
 	 };
 
 	 int res_len = sizeof(res) / sizeof(res[0]);

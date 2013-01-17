@@ -12,6 +12,8 @@ LOCAL_SRC_FILES := spritegame/main.cpp \
                    ../../Classes/SoundManager.cpp \
                    ../../Classes/GameLoading.cpp \
                    ../../Classes/GameMenuScene.cpp \
+                   ../../Classes/GamePassScene.cpp \
+                   ../../Classes/GamePauseScene.cpp \
                    ../../Classes/GameOverScene.cpp \
                    ../../Classes/GameHelpScene.cpp \
                    ../../Classes/SlidingMenu.cpp \

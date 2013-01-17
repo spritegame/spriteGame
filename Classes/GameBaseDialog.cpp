@@ -97,6 +97,27 @@ void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem1, CCMenuItemImage* me
 	addChild(m_pMenu, 1);
 }
 
+
+void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem1, CCMenuItemImage* menuItem2, CCMenuItemImage* menuItem3) {
+
+	CCSize bgZize = m_pDialogBg->getContentSize();
+
+	menuItem1->setPosition(ccp(m_pDialogBg->getPositionX() - bgZize.width/4,
+			m_pDialogBg->getPositionY() - bgZize.height/2 + menuItem1->getContentSize().height ));
+
+	menuItem2->setPosition(ccp(m_pDialogBg->getPositionX(),
+			m_pDialogBg->getPositionY() - bgZize.height/2 + menuItem1->getContentSize().height));
+
+	menuItem3->setPosition(ccp(m_pDialogBg->getPositionX() + bgZize.width/4,
+			m_pDialogBg->getPositionY() - bgZize.height/2 + menuItem1->getContentSize().height));
+
+	m_pMenu = CCMenu::create(menuItem1, menuItem2, menuItem3, NULL);
+
+	m_pMenu->setPosition(CCPointZero);
+
+	addChild(m_pMenu, 1);
+}
+
 bool GameBaseDialog::ccTouchBegan(CCTouch* pTouch, CCEvent* pEvent) {
 
 	if (m_pTouch == NULL) {

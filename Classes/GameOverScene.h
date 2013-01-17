@@ -17,8 +17,8 @@ public:
 
 	virtual bool init();
 	virtual void drawView();
-	void menuOkCallback(CCObject* pSender);
-	void menuCancelCallback(CCObject* pSender);
+	void buttonBackCallback(CCObject* pSender);
+	void buttonPlayAgainCallback(CCObject* pSender);
 
 	/*
 	 * 返回

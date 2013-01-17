@@ -17,8 +17,9 @@ public:
 
 	virtual bool init();
 	virtual void drawView();
-	void menuOkCallback(CCObject* pSender);
-	void menuCancelCallback(CCObject* pSender);
+	void buttonBackCallback(CCObject* pSender);
+	void buttonPlayAgainCallback(CCObject* pSender);
+	void buttonPlayContinueCallback(CCObject* pSender);
 
 	/*
 	 * 返回
@@ -33,7 +34,8 @@ public:
 	 */
 	void playContinue();
 
-	CREATE_FUNC(GamePauseScene);
+	CREATE_FUNC(GamePauseScene)
+	;
 
 };
 

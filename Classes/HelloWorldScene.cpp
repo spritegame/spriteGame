@@ -2,6 +2,8 @@
 #include "SoundManager.h"
 #include "SlidingMenu.h"
 #include "GameOverScene.h"
+#include "GamePassScene.h"
+#include "GamePauseScene.h"
 
 USING_NS_CC;
 
@@ -43,52 +45,33 @@ bool HelloWorld::init() {
 
 		// 1. Add a menu item with "X" image, which is clicked to quit the program.
 
-		// Create a "close" menu item with close icon, it's an auto release object.
-		CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-				menu_selector(HelloWorld::menuCloseCallback));
-		CC_BREAK_IF(! pCloseItem);
 
-		// Place the menu item bottom-right conner.
-		pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
-				origin.y + pCloseItem->getContentSize().height/2));
-
+		//game pause
+		CCMenuItemImage *pGamePauseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+				menu_selector(HelloWorld::menuGamePauseCallback));
+		CC_BREAK_IF(! pGamePauseItem);
+		pGamePauseItem->setPosition(ccp(origin.x + visibleSize.width/4,
+				origin.y + pGamePauseItem->getContentSize().height));
 
 
-
-		CCMenuItemImage *pSoundItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-				menu_selector(HelloWorld::menuSoundCallback));
-		CC_BREAK_IF(! pSoundItem);
-
-		// Place the menu item bottom-right conner.
-		pSoundItem->setPosition(ccp(origin.x + pSoundItem->getContentSize().width/2 ,
-				origin.y + pSoundItem->getContentSize().height/2));
+		//game pass
+		CCMenuItemImage *pGamePassItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+				menu_selector(HelloWorld::menuGamePassCallback));
+		CC_BREAK_IF(! pGamePassItem);
+		pGamePassItem->setPosition(ccp(origin.x + visibleSize.width/2,
+				origin.y + pGamePassItem->getContentSize().height));
 
 
-
-		CCMenuItemImage *pSoundSwitchItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-				menu_selector(HelloWorld::menuSoundSwitchCallback));
-		CC_BREAK_IF(! pSoundSwitchItem);
-
-		// Place the menu item bottom-right conner.
-		pSoundSwitchItem->setPosition(ccp(origin.x + pSoundSwitchItem->getContentSize().width/2 ,
-				origin.y + pSoundSwitchItem->getContentSize().height + 100+ pSoundSwitchItem->getContentSize().height/2));
-
-
-
+		//game over
 		CCMenuItemImage *pGameOverItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
 				menu_selector(HelloWorld::menuGameOverCallback));
 		CC_BREAK_IF(! pGameOverItem);
-
-		// Place the menu item bottom-right conner.
-		pGameOverItem->setPosition(ccp(origin.x + pGameOverItem->getContentSize().width/2 +200,
-				origin.y + pGameOverItem->getContentSize().height + 100+ pGameOverItem->getContentSize().height/2));
-
+		pGameOverItem->setPosition(
+				ccp(origin.x + visibleSize.width*3/4 ,
+						origin.y + pGamePassItem->getContentSize().height));
 
 
-
-
-		// Create a menu with the "close" menu item, it's an auto release object.
-		CCMenu* pMenu = CCMenu::create(pCloseItem, pSoundItem, pSoundSwitchItem,pGameOverItem, NULL);
+		CCMenu* pMenu = CCMenu::create(pGamePauseItem, pGamePassItem, pGameOverItem, NULL);
 		pMenu->setPosition(CCPointZero);
 		CC_BREAK_IF(! pMenu);
 
@@ -106,7 +89,7 @@ bool HelloWorld::init() {
 		pLabel->setPosition(ccp(size.width / 2, size.height - 50));
 
 		// Add the label to HelloWorld layer as a child layer.
-		this->addChild(pLabel, 1);
+		this->addChild(pLabel, 2);
 
 		// 3. Add add a splash screen, show the cocos2d splash image.
 		CCSprite* pSprite = CCSprite::create("HelloWorld.png");
@@ -118,28 +101,6 @@ bool HelloWorld::init() {
 		// Add the sprite to HelloWorld layer as a child layer.
 		this->addChild(pSprite, 0);
 
-		SoundManager::sharedSoundManager()->playMusic();
-
-
-
-
-
-		CCArray* ccArray = CCArray::createWithCapacity(2);
-
-		CCMenuItemImage* pItem1 = CCMenuItemImage::create("menu1.jpg", "menu1.jpg");
-		CCMenuItemImage* pItem2 = CCMenuItemImage::create("menu2.jpg", "menu2.jpg");
-		CCMenuItemImage* pItem3 = CCMenuItemImage::create("menu3.jpg", "menu3.jpg");
-		CCMenuItemImage* pItem4 = CCMenuItemImage::create("menu4.jpg", "menu4.jpg");
-
-		ccArray->addObject(pItem1);
-		ccArray->addObject(pItem2);
-		ccArray->addObject(pItem3);
-		ccArray->addObject(pItem4);
-		SlidingMenuGrid* slidingMenuGrid = SlidingMenuGrid::create(ccArray, 1, 1, CCPointMake(size.width / 2,size.height / 2), CCPointMake(0,0));
-		slidingMenuGrid->setPosition(0,0);
-		this->addChild(slidingMenuGrid, 2);
-
-
 
 		bRet = true;
 	} while (0);
@@ -147,16 +108,26 @@ bool HelloWorld::init() {
 	return bRet;
 }
 
-void HelloWorld::menuCloseCallback(CCObject* pSender) {
-	// "close" menu item clicked
-	CCDirector::sharedDirector()->end();
+void HelloWorld::menuGamePassCallback(CCObject* pSender) {
+	GamePassScene* pGamePassScene = GamePassScene::create();
+	pGamePassScene->show(this);
+	pGamePassScene->setOnCancel(this, callfuncO_selector(HelloWorld::gamePassCancelCallback));
 }
-void HelloWorld::menuSoundCallback(CCObject* pSender) {
-	SoundManager::sharedSoundManager()->playEffect();
+void HelloWorld::gamePassCancelCallback(CCObject* pSender) {
+	CCLog("gamePassCancelCallback................");
 }
-void HelloWorld::menuSoundSwitchCallback(CCObject* pSender) {
-	SoundManager::sharedSoundManager()->setMusic(!SoundManager::sharedSoundManager()->isMusicPlaying());
+
+void HelloWorld::menuGamePauseCallback(CCObject* pSender) {
+
+	GamePauseScene* pGamePauseScene = GamePauseScene::create();
+	pGamePauseScene->show(this);
+	pGamePauseScene->setOnCancel(this, callfuncO_selector(HelloWorld::gamePauseCancelCallback));
+
 }
+void HelloWorld::gamePauseCancelCallback(CCObject* pSender) {
+	CCLog("gamePauseCancelCallback................");
+}
+
 void HelloWorld::menuGameOverCallback(CCObject* pSender) {
 	GameOverScene* pGameOverScene = GameOverScene::create();
 	pGameOverScene->show(this);

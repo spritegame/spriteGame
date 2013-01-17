@@ -14,11 +14,13 @@ public:
     // there's no 'id' in cpp, so we recommand to return the exactly class pointer
     static cocos2d::CCScene* scene();
     
-    // a selector callback
-    void menuCloseCallback(CCObject* pSender);
-    void menuSoundCallback(CCObject* pSender);
-    void menuSoundSwitchCallback(CCObject* pSender);
 
+
+    void menuGamePassCallback(CCObject* pSender);
+    void gamePassCancelCallback(CCObject* pSender);
+
+    void menuGamePauseCallback(CCObject* pSender);
+    void gamePauseCancelCallback(CCObject* pSender);
 
     void menuGameOverCallback(CCObject* pSender);
     void gameOverCancelCallback(CCObject* pSender);

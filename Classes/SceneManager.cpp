@@ -74,13 +74,14 @@ void SceneManager::runScene(SceneId id) {
 		break;
 	case SCENE_MENU:
 //		SoundManager::sharedSoundManager()->StopMusic();
-		newScene = HelloWorld::scene();
-//		newScene = GameMenuScene::scene();
+//		newScene = HelloWorld::scene();
+		newScene = GameMenuScene::scene();
 		break;
 
 	case SCENE_PLAY:
 //		SoundManager::sharedSoundManager()->PlayMusic();
 //		newScene = GameScene::create();
+		newScene = HelloWorld::scene();
 		break;
 
 	case SCENE_GAMEOVER:

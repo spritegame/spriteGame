@@ -6,6 +6,7 @@
  */
 
 #include "GamePassScene.h"
+#include "SceneManager.h"
 
 USING_NS_CC;
 
@@ -19,13 +20,18 @@ bool GamePassScene::init() {
 	if (!GameBaseDialog::init()) {
 		return false;
 	}
-	CCMenuItemImage* btnOk = CCMenuItemImage::create("btnOk.png", "btnOk.png",
-			this, menu_selector(GamePassScene::menuOkCallback));
-	CCMenuItemImage* btnCancel = CCMenuItemImage::create("btnCancel.png",
-			"btnCancel.png", this,
-			menu_selector(GamePassScene::menuCancelCallback));
+	CCMenuItemImage* btnBack = CCMenuItemImage::create("btnBack.png", "btnBack.png",
+			this, menu_selector(GamePassScene::buttonBackCallback));
 
-	addMenuItem(btnOk, btnCancel);
+	CCMenuItemImage* btnPlayAgain = CCMenuItemImage::create("btnResume.png",
+			"btnResume.png", this,
+			menu_selector(GamePassScene::buttonPlayAgainCallback));
+
+	CCMenuItemImage* btnPlayNext = CCMenuItemImage::create("btnNext.png",
+			"btnNext.png", this,
+			menu_selector(GamePassScene::buttonPlayNextCallback));
+
+	addMenuItem(btnBack, btnPlayAgain, btnPlayNext);
 	return true;
 
 }
@@ -50,16 +56,21 @@ void GamePassScene::back() {
 
 void GamePassScene::playAgain() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
+	//do it
 }
 void GamePassScene::playNext() {
 	SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_PLAY);
+	//do it
 }
 
-void GamePassScene::menuOkCallback(CCObject* pSender) {
-
+void GamePassScene::buttonBackCallback(CCObject* pSender) {
+	back();
 }
-void GamePassScene::menuCancelCallback(CCObject* pSender) {
-	cancel();
+void GamePassScene::buttonPlayAgainCallback(CCObject* pSender) {
+	playAgain();
+}
+void GamePassScene::buttonPlayNextCallback(CCObject* pSender) {
+	playNext();
 }
 
 
