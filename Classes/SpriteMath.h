@@ -4,42 +4,38 @@
 #include "CCStdC.h"
 #include <math.h>
 #include <vector>
+#include "SpriteConstant.h"
 
-#define GAME_TOTAL_LEVEL 10
-//æ¶ˆé™¤è¡¨æ ¼è¡Œ
-static const int MAX_GAME_ROW = 5;
-//æ¶ˆé™¤è¡¨æ ¼åˆ—
-static const int MAX_GAME_COL = 5;
-
-//ç»¿è‰²
+//ÂÌÉ«
 static const int COLOR_GREEN = 0x0001;
-//çº¢è‰²
+//ºìÉ«
 static const int COLOR_RED = 0x0002;
-//è“è‰²
+//À¶É«
 static const int COLOR_BLUE = 0x0003;
-//è¤è‰²
+//ºÖÉ«
 static const int COLOR_BROWN = 0x0003;
-//é‡‘è‰²
+//½ğÉ«
 static const int COLOR_GOLDEN = 0x0004;
-//é‡‘è‰²
+//½ğÉ«
 static const int COLOR_PURPLE = 0x0005;
 
 class SpriteMath
 {
 public:
+#define GAME_TOTAL_LEVEL 10
 
-//è·å–å„å…³è‰²å—çš„ä¸åŒé¡”è‰²æ•°
+//»ñÈ¡¸÷¹ØÉ«¿éµÄ²»Í¬î†É«Êı
 //int getLevelColors(int intLevel);
-//è·å–å„å…³çš„æœ€é•¿æ¸¸æˆæ—¶é—´
+//»ñÈ¡¸÷¹ØµÄ×î³¤ÓÎÏ·Ê±¼ä
 //int getLevelTime(int intLevel);
-//è·å–å„å…³é€šå…³å¿…é¡»è¾¾åˆ°çš„åˆ†æ•°
+//»ñÈ¡¸÷¹ØÍ¨¹Ø±ØĞë´ïµ½µÄ·ÖÊı
 //int getLevelSuccessScore(int intLevel);
-//åˆ¤æ–­æ˜¯å¦é€šå…³
+//ÅĞ¶ÏÊÇ·ñÍ¨¹Ø
 //bool isPassLevel(int intLevel, int intScore);
-//è·å–ç”¨æˆ·é€šå…³æ—¶è·å–åˆ°çš„æ˜Ÿæ˜Ÿä¸ªæ•°
+//»ñÈ¡ÓÃ»§Í¨¹ØÊ±»ñÈ¡µ½µÄĞÇĞÇ¸öÊı
 //int getLevelStars(int intLevel, int intSuccessTimes);
 
-static std::vector<int> findCrossSprites(int m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index);//è·å–ä¸è¢«ç‚¹å‡»çš„è‰²å—åŒè‰²é‚»è¿‘è‰²å—
+static std::vector<int> findCrossSprites(char m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index);//»ñÈ¡Óë±»µã»÷µÄÉ«¿éÍ¬É«ÁÚ½üÉ«¿é
 
 };
 

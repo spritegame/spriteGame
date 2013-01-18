@@ -1,30 +1,31 @@
 #include "SpriteMath.h"
+#include <memory>
 
 using namespace std;
 
-//åˆå§‹æ–¹å‘
+//³õÊ¼·½Ïò
 const int ADDED_DIRECTION_INIT = 0x0000;
-//ä¸Š
+//ÉÏ
 const int ADDED_DIRECTION_UP = 0x0001;
-//ä¸‹
+//ÏÂ
 const int ADDED_DIRECTION_DOWN = 0x0002;
-//å·¦
+//×ó
 const int ADDED_DIRECTION_LEFT = 0x0003;
-//å³
+//ÓÒ
 const int ADDED_DIRECTION_RIGHT = 0x0004;
-//åŒè‰²ç²¾çµç´¢å¼•
+//Í¬É«¾«ÁéË÷Òı
 vector<int> vInts;
-//ç²¾çµæ€»æ•°
+//¾«Áé×ÜÊı
 int spriteTotalNum = MAX_GAME_ROW * MAX_GAME_COL;
-//æ·»åŠ äº†çš„å°±ç½®çœŸ
+//Ìí¼ÓÁËµÄ¾ÍÖÃÕæ
 bool  addedSprites[MAX_GAME_ROW * MAX_GAME_COL];
 
 
 
-static void addSprites(int m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index, int Direction)
+static void addSprites(char m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index, int Direction)
 {
 	//int i = 0;
-	if (index < 0 || index >= spriteTotalNum)  //å¦‚æœç²¾çµè¶…è¶Šäº†èŒƒå›´åˆ™ç›´æ¥é€€å‡ºï¼›
+	if (index < 0 || index >= spriteTotalNum)  //Èç¹û¾«Áé³¬Ô½ÁË·¶Î§ÔòÖ±½ÓÍË³ö£»
 		return;
 
 	if ( Direction != ADDED_DIRECTION_DOWN && 
@@ -56,7 +57,7 @@ static void addSprites(int m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index,
 		addSprites(m_BlocksType, index -1, ADDED_DIRECTION_LEFT);
 	}
 	if ( Direction != ADDED_DIRECTION_LEFT && 
-		(index % (MAX_GAME_COL - 1))  != 0 &&  m_BlocksType[index + 1] == m_BlocksType[index]
+		((index + 1) % MAX_GAME_COL)  != 0 &&  m_BlocksType[index + 1] == m_BlocksType[index]
 		&& addedSprites[index + 1] == false)
 	{
 	//	i++;
@@ -66,14 +67,12 @@ static void addSprites(int m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index,
 	}
 
 }
-vector<int> SpriteMath::findCrossSprites(int m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index)
+vector<int> SpriteMath::findCrossSprites(char m_BlocksType[MAX_GAME_ROW * MAX_GAME_COL], int index)
 {
+	memset(addedSprites, 0, sizeof(addedSprites)); 
+	vInts.clear();
 	vInts.push_back(index);
-	addSprites(m_BlocksType, index, ADDED_DIRECTION_INIT);
-    return vInts;
-}ctor<int> SpriteMath::findCrossSprites(int m_BlocksType[SpriteMath::MAX_GAME_ROW * SpriteMath::MAX_GAME_COL], int index)
-{
-	vInts.push_back(index);
+	addedSprites[index] = true;
 	addSprites(m_BlocksType, index, ADDED_DIRECTION_INIT);
     return vInts;
 }

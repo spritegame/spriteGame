@@ -11,6 +11,7 @@
 #include "GameOverScene.h"
 #include "GameHelpScene.h"
 #include "HelloWorldScene.h"
+#include "SpriteGrid.h"
 
 USING_NS_CC;
 
@@ -81,7 +82,9 @@ void SceneManager::runScene(SceneId id) {
 	case SCENE_PLAY:
 //		SoundManager::sharedSoundManager()->PlayMusic();
 //		newScene = GameScene::create();
-		newScene = HelloWorld::scene();
+		//newScene = HelloWorld::scene();
+
+	    newScene = SpriteGrid::scene();
 		break;
 
 	case SCENE_GAMEOVER:

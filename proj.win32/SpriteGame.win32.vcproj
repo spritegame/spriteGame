@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="SpriteGame.win32"
 	ProjectGUID="{83838D6D-6CA5-4359-84ED-5987E2D77595}"
+	RootNamespace="SpriteGame.win32"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -198,11 +199,59 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Classes\GameBaseDialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameHelpScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameLoading.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameMenuScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameOverScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GamePassScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GamePauseScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Classes\HelloWorldScene.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SceneManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SlidingMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SoundManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteGrid.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteMath.cpp"
 				>
 			</File>
 		</Filter>
@@ -212,6 +261,34 @@
 			>
 			<File
 				RelativePath="..\Classes\AppDelegate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameBaseDialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameHelpScene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameLoading.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameMenuScene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GameOverScene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GamePassScene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\GamePauseScene.h"
 				>
 			</File>
 			<File
@@ -226,17 +303,129 @@
 				RelativePath=".\resource.h"
 				>
 			</File>
+			<File
+				RelativePath="..\Classes\SceneManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SlidingMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SoundManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteConstant.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteGameResource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteGrid.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\SpriteMath.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="resource"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest"
 			>
 			<File
-				RelativePath="..\proj.android\assets\background.mp3"
+				RelativePath="..\Resources\sounds\background.mp3"
 				>
 			</File>
 			<File
-				RelativePath="..\proj.android\assets\effect2.ogg"
+				RelativePath="..\Resources\btnBack.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\btnCancel.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\btnNext.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\btnOk.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\btnResume.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\CloseNormal.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\CloseSelected.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Correct.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\effect2.ogg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Error.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\HelloWorld.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\loading_bg.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\menu1.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\menu2.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\menu3.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\menu4.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Over.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\popDialogBg.png"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Sound1.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Sound2.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Sound3.mp3"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\sounds\Sound4.mp3"
 				>
 			</File>
 			<File
@@ -247,34 +436,10 @@
 				RelativePath=".\SpriteGame.rc"
 				>
 			</File>
-			<Filter
-				Name="ipad"
+			<File
+				RelativePath="..\Resources\sounds\Start.mp3"
 				>
-				<File
-					RelativePath="..\proj.android\assets\ipad\CloseNormal.png"
-					>
-				</File>
-				<File
-					RelativePath="..\proj.android\assets\ipad\CloseSelected.png"
-					>
-				</File>
-				<File
-					RelativePath="..\proj.android\assets\ipad\HelloWorld.png"
-					>
-				</File>
-				<File
-					RelativePath="..\proj.android\assets\ipad\loading_bg.jpg"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="ipadhd"
-				>
-			</Filter>
-			<Filter
-				Name="iphone"
-				>
-			</Filter>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

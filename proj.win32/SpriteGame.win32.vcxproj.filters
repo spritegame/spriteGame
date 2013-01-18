@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{31f2943b-84b0-4f43-ac0c-38d76be24468}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{7ff1cb68-60d1-4361-b400-bd4ed7594938}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{7852555e-1055-4861-a661-0c1cdd885aa5}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SpriteGame.ico">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\CloseSelected.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\CloseNormal.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\HelloWorld.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\all_cell.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\bg_frame.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\bg_grid.PNG">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\bg_time.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\dot.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\fg_time.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\restart.PNG">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\sliderThumb.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\sliderTrack.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\images\start.png">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Correct.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Error.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Over.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Sound1.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Sound2.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Sound3.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Sound4.mp3">
+      <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\sounds\Start.mp3">
+      <Filter>resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpriteGame.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteGrid.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteGameResource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteMath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteConstant.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpriteGrid.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpriteMath.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
