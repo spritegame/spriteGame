@@ -26,7 +26,7 @@ public:
 	void readyGame();
 
 	//随机生成精灵
-	void SpriteGrid::randCreateSprite();
+	void randCreateSprite();
 
 	//移除精灵
 	void removeSprite(cocos2d::CCNode *pSender);

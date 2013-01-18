@@ -18,6 +18,8 @@ LOCAL_SRC_FILES := spritegame/main.cpp \
                    ../../Classes/GameHelpScene.cpp \
                    ../../Classes/SlidingMenu.cpp \
                    ../../Classes/GameBaseDialog.cpp \
+                   ../../Classes/SpriteGrid.cpp \
+                   ../../Classes/SpriteMath.cpp \
                    ../../Classes/HelloWorldScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
