@@ -24,6 +24,15 @@ class SpriteMath
 public:
 #define GAME_TOTAL_LEVEL 10
 
+//获取当前关数；
+int getLevel();
+//设置当前关数；
+void setLevel(int intCurLevel);
+//获取通关时长；
+int getLevelPassTime();
+//设置通关时长；
+void setLevelPassTime(int intPassTime);
+
 //获取各关色块的不同顔色数
 int getLevelColors(int intLevel);
 //获取各关的最长游戏时间
@@ -34,16 +43,12 @@ int getLevelPassScore(int intLevel);
 bool isPassLevel(int intLevel, int intScore);
 //获取用户通关时获取到的星星个数
 int getLevelStars(int intLevel, int intSuccessTime);
-
 //获取用户当前关卡即时分数；
 int getCurLevelUserScore();
-
 //保存用户当前关卡即时分数；
 int setCurLevelUserScore(int oneTimeScore);
-
 //获取用户当前关卡即时分数；
 int getUserTotalScore();
-
 //保存用户当前关卡即时分数；
 int setUserTotalScore(int curLevelScore);
 

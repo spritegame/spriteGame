@@ -80,8 +80,33 @@ vector<int> SpriteMath::findCrossSprites(char m_BlocksType[MAX_GAME_ROW * MAX_GA
 }
 
 
-//获取各关色块的不同顔色数
+//获取当前关数；
+int curLevel = 0;
+int SpriteMath::getLevel()
+{
+	return curLevel;
+}
+//设置当前关数；
+void SpriteMath::setLevel(int intCurLevel)
+{
+	curLevel = intCurLevel;
+	return;
+}
+//获取通关时长；
+int curPassTime = 0;
+int SpriteMath::getLevelPassTime()
+{
+	return curPassTime;
+}
+//设置通关时长；
+void SpriteMath::setLevelPassTime(int intPassTime)
+{
+	curPassTime = intPassTime;
+	return; 
+}
 
+
+//获取各关色块的不同顔色数
 const int LEVEL_COLOR_BASE = 3;
 const int LEVEL_COLOR_BASE_LEVEL = 3;
 
