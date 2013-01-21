@@ -6,9 +6,10 @@
  */
 
 #include "GameMenuScene.h"
-#include "SceneManager.h"
-#include "SoundManager.h"
-#include "SlidingMenu.h"
+#include "../SceneManager.h"
+#include "../SlidingMenu.h"
+#include "../SoundManager.h"
+#include "../SpriteGameResource.h"
 #include "GameOverScene.h"
 #include "GamePassScene.h"
 #include "GamePauseScene.h"
@@ -38,21 +39,40 @@ bool GameMenuScene::init() {
 	do {
 
 		CC_BREAK_IF(! CCLayer::init());
-
 		CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 		CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
+
+
 		//music button
-		CCMenuItemImage *pMusicItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
-				menu_selector(GameMenuScene::buttonMusicCallback));
+		CCMenuItemToggle* pMusicItem = CCMenuItemToggle::createWithTarget(this,
+				menu_selector(GameMenuScene::buttonMusicCallback),
+				CCMenuItemSprite::create(
+						CCSprite::createWithSpriteFrameName("btnSoundOn.png"),
+						CCSprite::createWithSpriteFrameName("btnSoundOn.png")),
+				CCMenuItemSprite::create(
+						CCSprite::createWithSpriteFrameName("btnSoundOff.png"),
+						CCSprite::createWithSpriteFrameName("btnSoundOff.png")),
+				NULL);
 		CC_BREAK_IF(! pMusicItem);
+
+		//check music
+		if(SoundManager::sharedSoundManager()->isMusicEnable()){
+			pMusicItem->setSelectedIndex(0);
+			SoundManager::sharedSoundManager()->playMusic();
+		}else{
+			pMusicItem->setSelectedIndex(1);
+		}
 
 		pMusicItem->setPosition(ccp(origin.x + pMusicItem->getContentSize().width ,
 				origin.y + pMusicItem->getContentSize().height));
 
 
 		//sound button
-		CCMenuItemImage *pSoundItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+		CCMenuItemSprite *pSoundItem = CCMenuItemSprite::create(
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				this,
 				menu_selector(GameMenuScene::buttonSoundCallback));
 		CC_BREAK_IF(! pSoundItem);
 		pSoundItem->setPosition(ccp(origin.x + pSoundItem->getContentSize().width*2 ,
@@ -60,9 +80,11 @@ bool GameMenuScene::init() {
 
 
 
-
 		//close button
-		CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+		CCMenuItemSprite *pCloseItem = CCMenuItemSprite::create(
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				this,
 				menu_selector(GameMenuScene::buttonCloseCallback));
 		CC_BREAK_IF(! pCloseItem);
 
@@ -76,22 +98,16 @@ bool GameMenuScene::init() {
 		this->addChild(pMenu, 1);
 
 
-		//check music
-		if(SoundManager::sharedSoundManager()->isMusicPlaying()){
-			SoundManager::sharedSoundManager()->playMusic();
-		}
-
 
 		//bg
 		CCSize size = CCDirector::sharedDirector()->getWinSize();
-		CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+		CCSprite* pSprite = CCSprite::create(s_test_image);
 		CC_BREAK_IF(! pSprite);
 		pSprite->setPosition(ccp(size.width/2, size.height/2));
 		this->addChild(pSprite, 0);
 
 		//SlidingMenu
 		createGameLevelSlidingMenu();
-
 		bRet = true;
 	} while (0);
 
@@ -104,13 +120,29 @@ void GameMenuScene::createGameLevelSlidingMenu() {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	CCArray* ccArray = CCArray::createWithCapacity(4);
 
-	CCMenuItemImage* pItem1 = CCMenuItemImage::create("menu1.jpg", "menu1.jpg", this,
+
+
+
+//	CCMenuItemSprite* pItem1 = CCMenuItemSprite::create("menu1.jpg", "menu1.jpg", this,
+//			menu_selector(GameMenuScene::buttonPlayCallback));
+	CCMenuItemSprite * pItem1 = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("menu1.jpg"),
+			CCSprite::createWithSpriteFrameName("menu1.jpg"), this,
 			menu_selector(GameMenuScene::buttonPlayCallback));
-	CCMenuItemImage* pItem2 = CCMenuItemImage::create("menu2.jpg", "menu2.jpg", this,
+
+	CCMenuItemSprite* pItem2 = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("menu2.jpg"),
+			CCSprite::createWithSpriteFrameName("menu2.jpg"), this,
 			menu_selector(GameMenuScene::buttonPlayCallback));
-	CCMenuItemImage* pItem3 = CCMenuItemImage::create("menu3.jpg", "menu3.jpg", this,
+
+	CCMenuItemSprite* pItem3 = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("menu3.jpg"),
+			CCSprite::createWithSpriteFrameName("menu4.jpg"), this,
 			menu_selector(GameMenuScene::buttonPlayCallback));
-	CCMenuItemImage* pItem4 = CCMenuItemImage::create("menu4.jpg", "menu4.jpg", this,
+
+	CCMenuItemSprite* pItem4 = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("menu4.jpg"),
+			CCSprite::createWithSpriteFrameName("menu4.jpg"), this,
 			menu_selector(GameMenuScene::buttonPlayCallback));
 
 	ccArray->addObject(pItem1);
@@ -124,11 +156,11 @@ void GameMenuScene::createGameLevelSlidingMenu() {
 
 }
 void GameMenuScene::buttonMusicCallback(CCObject* pSender) {
-	SoundManager::sharedSoundManager()->setMusic(!SoundManager::sharedSoundManager()->isMusicPlaying());
+	SoundManager::sharedSoundManager()->setMusicEnable(!SoundManager::sharedSoundManager()->isMusicPlaying());
 }
 
 void GameMenuScene::buttonSoundCallback(CCObject* pSender) {
-	SoundManager::sharedSoundManager()->setSoundEffect(!SoundManager::sharedSoundManager()->isSoundEffectPlaying());
+	SoundManager::sharedSoundManager()->setSoundEffectEnable(!SoundManager::sharedSoundManager()->isSoundEffectEnable());
 }
 
 void GameMenuScene::buttonPlayCallback(CCObject* pSender) {

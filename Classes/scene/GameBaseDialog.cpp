@@ -22,10 +22,11 @@ bool GameBaseDialog::init() {
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
-	m_pDialogBg = CCSprite::create("popDialogBg.png");
+	m_pDialogBg = CCSprite::createWithSpriteFrameName("popDialogBg.png");
 	m_pDialogBg->setPosition(ccp(size.width / 2, size.height / 2));
 	this->addChild(m_pDialogBg, 0);
 
+	this->setTitle();
 	this->drawView();
 
 	return true;
@@ -46,6 +47,9 @@ void GameBaseDialog::cancel() {
 }
 
 
+void GameBaseDialog::setTitle() {
+	CCLog("GameBaseDialog::setTitle...");
+}
 void GameBaseDialog::drawView() {
 	CCLog("GameBaseDialog::drawView...");
 }
@@ -71,7 +75,7 @@ void GameBaseDialog::setOnCancel(CCObject* target, SEL_CallFuncO selector) {
 }
 
 
-void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem) {
+void GameBaseDialog::addMenuItem(CCMenuItemSprite* menuItem) {
 
 	menuItem->setPosition(ccp(m_pDialogBg->getPositionX(), m_pDialogBg->getPositionY()));
 	m_pMenu = CCMenu::create(menuItem, NULL);
@@ -80,7 +84,7 @@ void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem) {
 	addChild(m_pMenu, 1);
 }
 
-void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem1, CCMenuItemImage* menuItem2) {
+void GameBaseDialog::addMenuItem(CCMenuItemSprite* menuItem1, CCMenuItemSprite* menuItem2) {
 
 	CCSize bgZize = m_pDialogBg->getContentSize();
 
@@ -98,7 +102,7 @@ void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem1, CCMenuItemImage* me
 }
 
 
-void GameBaseDialog::addMenuItem(CCMenuItemImage* menuItem1, CCMenuItemImage* menuItem2, CCMenuItemImage* menuItem3) {
+void GameBaseDialog::addMenuItem(CCMenuItemSprite* menuItem1, CCMenuItemSprite* menuItem2, CCMenuItemSprite* menuItem3) {
 
 	CCSize bgZize = m_pDialogBg->getContentSize();
 

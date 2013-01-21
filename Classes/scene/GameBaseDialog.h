@@ -25,9 +25,9 @@ public:
 	void onEnter();
 	void onExit();
 
-	void addMenuItem(CCMenuItemImage*);
-	void addMenuItem(CCMenuItemImage*, CCMenuItemImage*);
-	void addMenuItem(CCMenuItemImage*, CCMenuItemImage*, CCMenuItemImage*);
+	void addMenuItem(CCMenuItemSprite*);
+	void addMenuItem(CCMenuItemSprite*, CCMenuItemSprite*);
+	void addMenuItem(CCMenuItemSprite*, CCMenuItemSprite*, CCMenuItemSprite*);
 
 	/*
 	 * 打开窗口
@@ -46,6 +46,7 @@ public:
 	 * 绘制自定义UI
 	 */
 	virtual void drawView();
+	virtual void setTitle();
 
 	CREATE_FUNC(GameBaseDialog);
 

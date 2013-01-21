@@ -7,11 +7,11 @@
 #include "cocos2d.h"
 #include "SceneManager.h"
 #include "GameLoading.h"
-#include "GameMenuScene.h"
-#include "GameOverScene.h"
-#include "GameHelpScene.h"
-#include "HelloWorldScene.h"
 #include "SpriteGrid.h"
+#include "scene/GameMenuScene.h"
+#include "scene/GameOverScene.h"
+#include "scene/GameHelpScene.h"
+#include "scene/HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -82,9 +82,9 @@ void SceneManager::runScene(SceneId id) {
 	case SCENE_PLAY:
 //		SoundManager::sharedSoundManager()->PlayMusic();
 //		newScene = GameScene::create();
-		//newScene = HelloWorld::scene();
+		newScene = HelloWorld::scene();
 
-	    newScene = SpriteGrid::scene();
+//	    newScene = SpriteGrid::scene();
 		break;
 
 	case SCENE_GAMEOVER:

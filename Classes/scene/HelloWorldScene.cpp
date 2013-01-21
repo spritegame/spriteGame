@@ -1,9 +1,10 @@
 #include "HelloWorldScene.h"
-#include "SoundManager.h"
-#include "SlidingMenu.h"
+#include "../SoundManager.h"
+#include "../SlidingMenu.h"
 #include "GameOverScene.h"
 #include "GamePassScene.h"
 #include "GamePauseScene.h"
+#include "../SpriteGameResource.h"
 
 USING_NS_CC;
 
@@ -47,7 +48,10 @@ bool HelloWorld::init() {
 
 
 		//game pause
-		CCMenuItemImage *pGamePauseItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+		CCMenuItemSprite *pGamePauseItem = CCMenuItemSprite::create(
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				this,
 				menu_selector(HelloWorld::menuGamePauseCallback));
 		CC_BREAK_IF(! pGamePauseItem);
 		pGamePauseItem->setPosition(ccp(origin.x + visibleSize.width/4,
@@ -55,7 +59,10 @@ bool HelloWorld::init() {
 
 
 		//game pass
-		CCMenuItemImage *pGamePassItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+		CCMenuItemSprite *pGamePassItem = CCMenuItemSprite::create(
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				this,
 				menu_selector(HelloWorld::menuGamePassCallback));
 		CC_BREAK_IF(! pGamePassItem);
 		pGamePassItem->setPosition(ccp(origin.x + visibleSize.width/2,
@@ -63,7 +70,10 @@ bool HelloWorld::init() {
 
 
 		//game over
-		CCMenuItemImage *pGameOverItem = CCMenuItemImage::create("CloseNormal.png", "CloseSelected.png", this,
+		CCMenuItemSprite *pGameOverItem = CCMenuItemSprite::create(
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				CCSprite::createWithSpriteFrameName("CloseNormal.png"),
+				this,
 				menu_selector(HelloWorld::menuGameOverCallback));
 		CC_BREAK_IF(! pGameOverItem);
 		pGameOverItem->setPosition(
@@ -92,7 +102,7 @@ bool HelloWorld::init() {
 		this->addChild(pLabel, 2);
 
 		// 3. Add add a splash screen, show the cocos2d splash image.
-		CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+		CCSprite* pSprite = CCSprite::create(s_test_image);
 		CC_BREAK_IF(! pSprite);
 
 		// Place the sprite on the center of the screen

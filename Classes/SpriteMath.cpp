@@ -1,6 +1,8 @@
 #include "SpriteMath.h"
+#include "cocos2d.h"
 #include <memory>
 
+USING_NS_CC;
 using namespace std;
 
 //初始方向
@@ -76,3 +78,132 @@ vector<int> SpriteMath::findCrossSprites(char m_BlocksType[MAX_GAME_ROW * MAX_GA
 	addSprites(m_BlocksType, index, ADDED_DIRECTION_INIT);
     return vInts;
 }
+
+
+//获取当前关数；
+int curLevel = 0;
+int SpriteMath::getLevel()
+{
+	return curLevel;
+}
+//设置当前关数；
+void SpriteMath::setLevel(int intCurLevel)
+{
+	curLevel = intCurLevel;
+	return;
+}
+//获取通关时长；
+int curPassTime = 0;
+int SpriteMath::getLevelPassTime()
+{
+	return curPassTime;
+}
+//设置通关时长；
+void SpriteMath::setLevelPassTime(int intPassTime)
+{
+	curPassTime = intPassTime;
+	return; 
+}
+
+
+//获取各关色块的不同顔色数
+const int LEVEL_COLOR_BASE = 3;
+const int LEVEL_COLOR_BASE_LEVEL = 3;
+
+int SpriteMath::getLevelColors(int intLevel)
+{
+	if ( intLevel <= 0)
+		return 0;
+
+	if (intLevel <= LEVEL_COLOR_BASE_LEVEL)
+		return LEVEL_COLOR_BASE;
+	else if (intLevel <= LEVEL_COLOR_BASE_LEVEL * 2)
+		return LEVEL_COLOR_BASE + 1;
+	else// if (intLevel <= LEVEL_COLOR_BASE_LEVEL * 3)
+		return LEVEL_COLOR_BASE + 2;
+}
+
+//获取各关的最长游戏时间
+const int LEVEL_TIME_BASE = 60; //一个关卡的基础游戏时长，以秒为单位；
+const int LEVEL_TIME_INCREASED_LEVEL = 3;
+
+int SpriteMath::getLevelTime(int intLevel)
+{
+	if (intLevel <= 0)
+		return 0;
+	if ( intLevel % LEVEL_TIME_INCREASED_LEVEL == 0)
+		return LEVEL_TIME_BASE * (intLevel / LEVEL_TIME_INCREASED_LEVEL);
+	else
+		return LEVEL_TIME_BASE * (intLevel / LEVEL_TIME_INCREASED_LEVEL + 1);
+}
+
+//获取各关通关必须达到的分数
+const int LEVEL_SCORE_BASE = 2000;
+const int LEVEL_SCORE_INCREASE = 1000;
+
+int SpriteMath::getLevelPassScore(int intLevel)
+{
+	if (intLevel <= 0)
+		return 0;
+	return LEVEL_SCORE_BASE + (intLevel - 1) * LEVEL_SCORE_INCREASE;
+}
+
+//判断是否通关
+bool SpriteMath::isPassLevel(int intLevel, int intScore)
+{
+	if (intLevel <= 0 || intScore <= 0)
+		return 0;
+
+	int passScore = getLevelPassScore(intLevel);
+	return intScore >= passScore ? true : false;
+}
+
+//获取用户通关时获取到的星星个数
+const float LEVEL_STAR_TWO = 0.7f;
+const float LEVEL_STAR_THREE = 0.5f;
+
+int SpriteMath::getLevelStars(int intLevel, int intSuccessTime)
+{
+	if (intLevel <= 0 || intSuccessTime <= 0)
+		return 0;
+	int levelTime = getLevelTime(intLevel);
+	if ( intSuccessTime <= (int)(LEVEL_STAR_THREE * levelTime))
+		return 3;
+	else if (intSuccessTime <= (int)(LEVEL_STAR_TWO * levelTime))
+		return 2;
+	else
+		return 1;
+}
+
+//获取用户当前关卡即时分数；
+int userLevelScore = 0;
+int SpriteMath::getCurLevelUserScore()
+{
+	return userLevelScore;
+}
+
+//保存用户当前关卡即时分数；
+int SpriteMath::setCurLevelUserScore(int oneTimeScore)
+{
+	userLevelScore = userLevelScore + oneTimeScore;
+	return userLevelScore;
+}
+
+//获取用户当前关卡即时分数；
+int SpriteMath::getUserTotalScore()
+{
+	return CCUserDefault::sharedUserDefault()->getIntegerForKey("USER_TOTAL_SCORE", 0);
+}
+
+//保存用户当前关卡即时分数；
+int SpriteMath::setUserTotalScore(int curLevelScore)
+{
+	int userTotalScore = CCUserDefault::sharedUserDefault()->getIntegerForKey("USER_TOTAL_SCORE", 0);
+	if (curLevelScore > 0)
+	{
+		userTotalScore = userTotalScore + curLevelScore;
+		CCUserDefault::sharedUserDefault()->setIntegerForKey("USER_TOTAL_SCORE", userTotalScore);
+	}
+	return userTotalScore;
+}
+

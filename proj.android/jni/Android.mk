@@ -11,16 +11,16 @@ LOCAL_SRC_FILES := spritegame/main.cpp \
                    ../../Classes/SceneManager.cpp \
                    ../../Classes/SoundManager.cpp \
                    ../../Classes/GameLoading.cpp \
-                   ../../Classes/GameMenuScene.cpp \
-                   ../../Classes/GamePassScene.cpp \
-                   ../../Classes/GamePauseScene.cpp \
-                   ../../Classes/GameOverScene.cpp \
-                   ../../Classes/GameHelpScene.cpp \
+                   ../../Classes/scene/GameMenuScene.cpp \
+                   ../../Classes/scene/GamePassScene.cpp \
+                   ../../Classes/scene/GamePauseScene.cpp \
+                   ../../Classes/scene/GameOverScene.cpp \
+                   ../../Classes/scene/GameHelpScene.cpp \
+                   ../../Classes/scene/GameBaseDialog.cpp \
+                   ../../Classes/scene/HelloWorldScene.cpp \
                    ../../Classes/SlidingMenu.cpp \
-                   ../../Classes/GameBaseDialog.cpp \
                    ../../Classes/SpriteGrid.cpp \
                    ../../Classes/SpriteMath.cpp \
-                   ../../Classes/HelloWorldScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
 

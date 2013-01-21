@@ -8,6 +8,7 @@
 #include "GameLoading.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
+#include "SpriteGameResource.h"
 
 USING_NS_CC;
 
@@ -47,28 +48,15 @@ bool GameLoading::init() {
 
 
 //	CCTextureCache::sharedTextureCache()->addImage("loading_bg.jpg");
-	CCSprite* loadingBg = CCSprite::create("loading_bg.jpg");
+	CCSprite* loadingBg = CCSprite::create(s_loadng_bg);
 	loadingBg->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 	addChild(loadingBg, 0);
 
 	SoundManager::sharedSoundManager();
 
 	std::string res[] = {
-	        "CloseNormal.png",
-	        "CloseSelected.png",
-	        "HelloWorld.png",
-
-			"menu1.jpg",
-	        "menu2.jpg",
-	        "menu3.jpg",
-	        "menu4.jpg",
-
-			"popDialogBg.png",
-	        "btnOk.png",
-	        "btnCancel.png",
-	        "btnBack.png",
-	        "btnNext.png",
-	        "btnResume.png",
+			s_test_image,
+			s_icon_png
 	 };
 
 	 int res_len = sizeof(res) / sizeof(res[0]);
@@ -96,6 +84,7 @@ void GameLoading::loadingCallBack(CCObject* obj) {
 	CCLog("loadingCallBack _resource_count:%d",m_iResource_count);
 	if(m_iResource_count == 0){
 		CCLog("loading finish...");
+		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(s_icon_plist);
 		SceneManager::sharedGameManager()->runScene(SceneManager::SCENE_MENU);
 	}
 }

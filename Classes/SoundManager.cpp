@@ -2,21 +2,22 @@
 #include "SimpleAudioEngine.h"
 #include "SoundManager.h"
 #include "string.h"
+#include "SpriteGameResource.h"
 
 // android effect only support ogg
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#define EFFECT_FILE        "effect2.ogg"
+#define EFFECT_FILE        s_soundCorrect
 #elif( CC_TARGET_PLATFORM == CC_PLATFORM_MARMALADE)
-#define EFFECT_FILE        "effect1.raw"
+#define EFFECT_FILE        s_soundCorrect
 #else
-#define EFFECT_FILE        "effect1.wav"
+#define EFFECT_FILE        s_soundCorrect
 #endif // CC_PLATFORM_ANDROID
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #define MUSIC_FILE        "music.mid"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY)
-#define MUSIC_FILE        "background.ogg"
+#define MUSIC_FILE        s_music_background
 #else
-#define MUSIC_FILE        "background.mp3"
+#define MUSIC_FILE        s_music_background
 #endif // CC_PLATFORM_WIN32
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -79,7 +80,7 @@ void SoundManager::playMusic() {
 }
 
 void SoundManager::playMusic(bool loop) {
-	if (m_bIsMusic) {
+	if (m_bIsMusic && !isMusicPlaying()) {
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 				std::string(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(MUSIC_FILE)).c_str(), loop);
 	}
@@ -125,7 +126,7 @@ void SoundManager::stopAllEffects() {
 	SimpleAudioEngine::sharedEngine()->stopAllEffects();
 }
 
-void SoundManager::setMusic(bool isMusic) {
+void SoundManager::setMusicEnable(bool isMusic) {
 	m_bIsMusic = isMusic;
 
 	CCUserDefault::sharedUserDefault()->setBoolForKey("isMusic",m_bIsMusic);
@@ -135,18 +136,21 @@ void SoundManager::setMusic(bool isMusic) {
 		playMusic();
 	}
 }
-void SoundManager::setSoundEffect(bool isSoundEffect) {
+void SoundManager::setSoundEffectEnable(bool isSoundEffect) {
 	m_bIsSoundEffect = isSoundEffect;
 
 	CCUserDefault::sharedUserDefault()->setBoolForKey("isSoundEffect",m_bIsSoundEffect);
 
 }
 
-bool SoundManager::isMusicPlaying() {
+bool SoundManager::isMusicEnable() {
 	return m_bIsMusic;
 
 }
-bool SoundManager::isSoundEffectPlaying() {
+bool SoundManager::isSoundEffectEnable() {
 	return m_bIsSoundEffect;
+}
+bool SoundManager::isMusicPlaying() {
+	return SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying();
 }
 

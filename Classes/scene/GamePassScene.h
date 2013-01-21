@@ -1,25 +1,26 @@
 /*
- * GamePauseScene.h
+ * GamePassScene.h
  *
  *  Created on: 2013-1-14
  *      Author: allin.dev
  */
 
-#ifndef GAMEPAUSESCENE_H_
-#define GAMEPAUSESCENE_H_
+#ifndef GamePassScene_H_
+#define GamePassScene_H_
 
 #include "GameBaseDialog.h"
 
-class GamePauseScene: public GameBaseDialog {
+class GamePassScene: public GameBaseDialog {
 public:
-	GamePauseScene();
-	~GamePauseScene();
+	GamePassScene();
+	~GamePassScene();
 
 	virtual bool init();
+	virtual void setTitle();
 	virtual void drawView();
 	void buttonBackCallback(CCObject* pSender);
 	void buttonPlayAgainCallback(CCObject* pSender);
-	void buttonPlayContinueCallback(CCObject* pSender);
+	void buttonPlayNextCallback(CCObject* pSender);
 
 	/*
 	 * 返回
@@ -30,13 +31,12 @@ public:
 	 */
 	void playAgain();
 	/**
-	 * 继续游戏
+	 * 下一关卡
 	 */
-	void playContinue();
+	void playNext();
 
-	CREATE_FUNC(GamePauseScene)
-	;
+	CREATE_FUNC(GamePassScene);
 
 };
 
-#endif /* GAMEPAUSESCENE_H_ */
+#endif /* GamePassScene_H_ */

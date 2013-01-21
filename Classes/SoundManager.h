@@ -19,10 +19,11 @@ public:
 	void stopEffect(int soundId);
 	void stopAllEffects();
 
-	void setMusic(bool isMusic);
-	void setSoundEffect(bool isSoundEffect);
+	void setMusicEnable(bool isMusic);
+	void setSoundEffectEnable(bool isSoundEffect);
+	bool isSoundEffectEnable();
+	bool isMusicEnable();
 	bool isMusicPlaying();
-	bool isSoundEffectPlaying();
 
 protected:
 	SoundManager();

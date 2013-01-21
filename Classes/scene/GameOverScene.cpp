@@ -6,7 +6,7 @@
  */
 
 #include "GameOverScene.h"
-#include "SceneManager.h"
+#include "../SceneManager.h"
 
 USING_NS_CC;
 
@@ -20,15 +20,30 @@ bool GameOverScene::init() {
 	if (!GameBaseDialog::init()) {
 		return false;
 	}
-	CCMenuItemImage* btnBack = CCMenuItemImage::create("btnBack.png", "btnBack.png",
+	CCMenuItemSprite* btnBack = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("btnBack.png"),
+			CCSprite::createWithSpriteFrameName("btnBack.png"),
 			this, menu_selector(GameOverScene::buttonBackCallback));
 
-	CCMenuItemImage* btnPlayAgain = CCMenuItemImage::create("btnResume.png", "btnResume.png",
+	CCMenuItemSprite* btnPlayAgain = CCMenuItemSprite::create(
+			CCSprite::createWithSpriteFrameName("btnResume.png"),
+			CCSprite::createWithSpriteFrameName("btnResume.png"),
 			this, menu_selector(GameOverScene::buttonPlayAgainCallback));
 
 	addMenuItem(btnBack, btnPlayAgain);
 	return true;
 
+}
+
+void GameOverScene::setTitle() {
+	CCLog("GamePassScene::setTitle...");
+//	if (!m_pDialogBg) {
+//		return;
+//	}
+//
+//	CCLabelTTF* pLabel = CCLabelTTF::create("Game over", "Arial", 24);
+//	pLabel->setPosition(ccp(m_pDialogBg->getPositionX(), m_pDialogBg->getPositionY() + m_pDialogBg->getContentSize().height/2 - pLabel->getContentSize().height));
+//	this->addChild(pLabel, 1);
 }
 
 void GameOverScene::drawView() {
@@ -37,10 +52,10 @@ void GameOverScene::drawView() {
 		return;
 	}
 
-	CCSprite* sprite = CCSprite::create("menu4.jpg");
-	sprite->setPosition(
-			ccp(m_pDialogBg->getPositionX(), m_pDialogBg->getPositionY()));
-	this->addChild(sprite, 1);
+//	CCSprite* sprite = CCSprite::create("menu4.jpg");
+//	sprite->setPosition(
+//			ccp(m_pDialogBg->getPositionX(), m_pDialogBg->getPositionY()));
+//	this->addChild(sprite, 1);
 
 }
 
